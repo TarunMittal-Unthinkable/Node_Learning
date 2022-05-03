@@ -1,0 +1,11 @@
+{
+  "name": "expapp",
+  "version": "1.0.0",
+  "description": "express by tarun",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tarun Mittal",
+  "license": "ISC"
+}
