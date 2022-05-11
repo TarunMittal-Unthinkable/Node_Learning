@@ -1,16 +1,14 @@
-var nodeMailer=require('nodemailer');
-var transport=nodeMailer.createTransport({
-    host:'abc@gmail.com',
-    port:587,
-    secure:false,
-    requireTLS:true,
+require("dotenv").config();
+const nodeMailer=require('nodemailer');
+let transport=nodeMailer.createTransport({
+    service:"gmail",
     auth:{
-        user:'abc@gmail.com',
-        pass:'abc'
+        user:process.env.user,
+        pass:process.env.pass
     }
 });
 
-var mailOption={
+let mailOption={
     from:'abc@gmail.com',
     to:'bbc@gmail.com',
     subject:'Tarun',
