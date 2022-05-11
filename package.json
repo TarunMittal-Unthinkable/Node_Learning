@@ -1,0 +1,25 @@
+{
+  "name": "node_learning",
+  "version": "1.0.0",
+  "description": "Learning NodeJs",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TarunMittal-Unthinkable/Node_Learning.git"
+  },
+  "author": "Tarun Mittal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TarunMittal-Unthinkable/Node_Learning/issues"
+  },
+  "homepage": "https://github.com/TarunMittal-Unthinkable/Node_Learning#readme",
+  "dependencies": {
+    "ejs": "^3.1.7",
+    "express": "^4.18.1",
+    "nodemailer": "^6.7.4",
+    "nodemon": "^2.0.15"
+  }
+}
