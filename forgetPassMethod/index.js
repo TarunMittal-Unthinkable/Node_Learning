@@ -13,7 +13,7 @@ let user={
 const jwtkey=process.env.JWT_KEY;
 
 
-app.get('/reset-pass/:id/:token',(re,res)=>{
+app.get('/reset-pass/:id/:token',(req,res)=>{
     const{id,token}=req.params;
 
     if(id!==user.id){
@@ -21,10 +21,10 @@ app.get('/reset-pass/:id/:token',(re,res)=>{
         return;
     }
 
-const secret=jwtkey+user.pass;
+const secret=jwtkey+process.env.pass;
 try{
 const payload=jwt.verify(token,secret);
-res.send('reset-pass', {email:user});}
+res.status(201).send({email:user});}
 catch(error){
  console.log(error.message);
  res.send(error.message);
@@ -32,8 +32,6 @@ catch(error){
 
 
 });
-
-
 
 app.post('/forget-pass',(req,res)=>{
     const {email}=req.body;
@@ -43,13 +41,14 @@ app.post('/forget-pass',(req,res)=>{
         return;
     }
 
-const secret=jwtkey+user.pass;
+const secret=jwtkey+process.env.pass;
 const payload={
     email:user.email,
     id:user.id
 }
 
-const token=jwt.sign(payload,secret,{expiresIn:'1m'});
+const token=jwt.sign(payload,secret,{expiresIn:'5m'});
+console.log(token);
 const link=`http://localhost:3000/${user.id}/${token}`;
 console.log(link);
 res.send("Password link send");
@@ -65,7 +64,7 @@ app.post('/reset-pass/:id/:token',(req,res)=>{
     const secret=jwtkey+user.pass;
     try{
     const payload=jwt.verify(token,secret);
-    user.pass=pass;
+    user.pass=process.env.pass;
     res.send(user);
     }
     catch(error){
