@@ -19,7 +19,7 @@ const options ={
       },
       servers:[
           {
-              url: 'http://localhost:4000/'
+              url: 'http://localhost:5000/'
           }
       ]
   },
@@ -38,6 +38,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
  *  get:
  *      summary: This api is used to check if get method is working or not
  *      description: This api is used to check if get method is working or not
+ *      tags:
+ *        - Employee
  *      responses:
  *          200:
  *              description: To test Get method
@@ -80,6 +82,8 @@ app.get("/", async (req, res) => {
  *  get:
  *      summary: To get all employee from postgres
  *      description: this api is used to fetch data from postgres
+ *      tags:
+ *        - Employee
  *      responses:
  *          200:
  *              description: this api is used to fetch data from postgres
@@ -110,6 +114,8 @@ app.get("/api/employee", async (req, res) => {
  *  get:
  *      summary: To get specific employee from postgres
  *      description: this api is used to fetch data from postgres
+ *      tags:
+ *        - Employee
  *      parameters:
  *          - in: path
  *            name: id
@@ -144,6 +150,26 @@ app.get("/api/employee/:id", async (req, res) => {
 
 //create all
 
+/**
+ * @swagger
+ * /api/employee:
+ *  post:
+ *      summary: used to insert data to postgres
+ *      description: this api is used to insert data in postgres
+ *      tags:
+ *        - Employee
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      $ref: '#components/schemas/Employee'
+ *      responses:
+ *          200:
+ *              description: Added Successfully In postgres
+ */
+
+
 app.post("/api/employee", async (req, res) => {
   try {
     const { emp_id } = req.body;
@@ -159,6 +185,39 @@ app.post("/api/employee", async (req, res) => {
     console.log(err.message);
   }
 });
+
+
+/**
+ * @swagger
+ * /api/employee/{id}:
+ *  put:
+ *      summary: used to update data to postgres
+ *      description: this api is used to fetch data from postgres
+ *      tags:
+ *        - Employee
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true
+ *            description: Numeric ID required
+ *            schema:
+ *              type: integer
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      $ref: '#components/schemas/Employee'
+ *      responses:
+ *          200:
+ *              description: Updated Successfully
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: array
+ *                          items:
+ *                              $ref: '#components/schemas/Employee'
+*/
 
 //update all todo
 app.put("/api/employee/:id", async (req, res) => {
@@ -178,6 +237,28 @@ app.put("/api/employee/:id", async (req, res) => {
   }
 });
 
+
+
+/**
+ * @swagger
+ * /api/employee/{id}:
+ *  delete:
+ *      summary: this api is use to delete record from postgres database
+ *      description: this api is used to fetch data from postgres
+ *      tags:
+ *        - Employee
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true
+ *            description: Numeric ID required
+ *            schema:
+ *              type: integer
+ *      responses:
+ *          200:
+ *              description: data is deleted
+ */
+
 //delete all
 app.delete("/api/employee/:id", async (req, res) => {
   try {
@@ -192,6 +273,6 @@ app.delete("/api/employee/:id", async (req, res) => {
   }
 });
 
-app.listen(4000, () => {
+app.listen(5000, () => {
   console.log("Server is listening");
 });
