@@ -1,0 +1,14 @@
+{
+  "name": "dbmigration",
+  "version": "1.0.0",
+  "description": "Migration",
+  "main": "home.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tarun Mittal",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.7.3"
+  }
+}
